@@ -59,6 +59,9 @@ class MomoVnPluginDelegate(private var registrar: PluginRegistry.Registrar? = nu
             val phonenumber = data.getStringExtra("phonenumber")
             val message = data.getStringExtra("message")
             val extra = data.getStringExtra("extra")
+            if (extra == null) {
+                extra = "";
+            }
             val data: MutableMap<String, Any> = java.util.HashMap()
             data.put("isSuccess", isSuccess)
             data.put("status", status)
