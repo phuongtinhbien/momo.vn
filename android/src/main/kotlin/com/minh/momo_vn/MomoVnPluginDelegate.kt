@@ -38,6 +38,8 @@ class MomoVnPluginDelegate(private var registrar: PluginRegistry.Registrar? = nu
             if (requestCode == AppMoMoLib.getInstance().REQUEST_CODE_MOMO) {
                 _handleResult(data)
             }
+        } else {
+            finish();
         }
 
         return true
