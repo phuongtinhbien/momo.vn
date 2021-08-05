@@ -1,18 +1,11 @@
 package com.minh.momo_vn
 
-import android.annotation.TargetApi
 import android.app.Activity
 import android.content.Intent
-import android.os.Build
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry
 import io.flutter.plugin.common.PluginRegistry.ActivityResultListener
 import vn.momo.momo_partner.AppMoMoLib
-import 	java.util.Base64
-
-import android.R.attr.data
-
-
 
 
 @Suppress("DEPRECATION")
@@ -51,6 +44,7 @@ class MomoVnPluginDelegate(private var registrar: PluginRegistry.Registrar? = nu
 
         return true
     }
+
     private fun sendReply(data: Map<String, Any>) {
         if (this.pendingResult != null) {
             this.pendingResult?.success(data)
@@ -73,21 +67,21 @@ class MomoVnPluginDelegate(private var registrar: PluginRegistry.Registrar? = nu
                 extra = "";
             }
             val data: MutableMap<String, Any> = java.util.HashMap()
-            data.put("isSuccess", isSuccess)
-            data.put("status", status)
-            data.put("phoneNumber", phonenumber.toString())
-            data.put("token", token.toString())
-            data.put("message", message.toString())
-            data.put("extra", extra.toString())
+            data["isSuccess"] = isSuccess
+            data["status"] = status
+            data["phoneNumber"] = phonenumber.toString()
+            data["token"] = token.toString()
+            data["message"] = message.toString()
+            data["extra"] = extra.toString()
             sendReply(data)
         } ?: run {
             val data: MutableMap<String, Any> = java.util.HashMap()
-            data.put("isSuccess", false)
-            data.put("status", 7);
-            data.put("phoneNumber", "")
-            data.put("token", "")
-            data.put("message", "")
-            data.put("extra", "")
+            data["isSuccess"] = false
+            data["status"] = 7;
+            data["phoneNumber"] = ""
+            data["token"] = ""
+            data["message"] = ""
+            data["extra"] = ""
             sendReply(data)
         }
     }
