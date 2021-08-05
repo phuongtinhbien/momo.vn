@@ -2,6 +2,7 @@ package com.minh.momo_vn
 
 import android.app.Activity
 import android.content.Intent
+import io.flutter.Log
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry
 import io.flutter.plugin.common.PluginRegistry.ActivityResultListener
@@ -9,7 +10,7 @@ import vn.momo.momo_partner.AppMoMoLib
 
 
 @Suppress("DEPRECATION")
-class MomoVnPluginDelegate(private var registrar: PluginRegistry.Registrar? = null) : ActivityResultListener {
+class MomoVnPluginDelegate(private var registrar: PluginRegistry.Registrar? = null) : ActivityResultListener, PluginRegistry.NewIntentListener {
 
     private var pendingResult: Result? = null
     private var pendingReply: Map<String, Any>? = null
@@ -37,9 +38,9 @@ class MomoVnPluginDelegate(private var registrar: PluginRegistry.Registrar? = nu
                 _handleResult(data)
             }
         } else {
-            val intent = registrar?.activity()?.intent
-            intent?.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-            registrar?.activity()?.startActivity(intent);
+            val data: MutableMap<String, Any> = java.util.HashMap()
+            data["error"] = "User cancled"
+            sendReply(data)
         }
 
         return true
@@ -84,6 +85,10 @@ class MomoVnPluginDelegate(private var registrar: PluginRegistry.Registrar? = nu
             data["extra"] = ""
             sendReply(data)
         }
+    }
+
+    override fun onNewIntent(intent: Intent?): Boolean {
+        TODO("Not yet implemented")
     }
 
 }
