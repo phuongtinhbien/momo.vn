@@ -10,7 +10,7 @@ import vn.momo.momo_partner.AppMoMoLib
 
 
 @Suppress("DEPRECATION")
-class MomoVnPluginDelegate(private var registrar: PluginRegistry.Registrar? = null) : ActivityResultListener, PluginRegistry.NewIntentListener {
+class MomoVnPluginDelegate(private var registrar: PluginRegistry.Registrar? = null) : ActivityResultListener {
 
     private var pendingResult: Result? = null
     private var pendingReply: Map<String, Any>? = null
@@ -87,8 +87,5 @@ class MomoVnPluginDelegate(private var registrar: PluginRegistry.Registrar? = nu
         }
     }
 
-    override fun onNewIntent(intent: Intent?): Boolean {
-        TODO("Not yet implemented")
-    }
 
 }
