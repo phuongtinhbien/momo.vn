@@ -45,9 +45,9 @@ class MomoVnPluginDelegate(private var registrar: PluginRegistry.Registrar? = nu
                 _handleResult(data)
             }
         } else {
-            intent = Intent(this, MainActivity::class.java)
-            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
-            startActivity(intent)
+            val intent = registrar?.activity()?.intent
+            intent?.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+            registrar?.activity()?.startActivity(intent);
         }
 
         return true
