@@ -9,6 +9,12 @@ import io.flutter.plugin.common.PluginRegistry
 import io.flutter.plugin.common.PluginRegistry.ActivityResultListener
 import vn.momo.momo_partner.AppMoMoLib
 import 	java.util.Base64
+import android.content.Intent
+
+import android.R.attr.data
+
+
+
 
 @Suppress("DEPRECATION")
 class MomoVnPluginDelegate(private var registrar: PluginRegistry.Registrar? = null) : ActivityResultListener {
@@ -39,7 +45,9 @@ class MomoVnPluginDelegate(private var registrar: PluginRegistry.Registrar? = nu
                 _handleResult(data)
             }
         } else {
-            finish();
+            intent = Intent(this, MainActivity::class.java)
+            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
+            startActivity(intent)
         }
 
         return true
