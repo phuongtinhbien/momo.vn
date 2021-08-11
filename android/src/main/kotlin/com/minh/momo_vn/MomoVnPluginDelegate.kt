@@ -94,7 +94,6 @@ class MomoVnPluginDelegate(private var registrar: PluginRegistry.Registrar? = nu
     }
 
     override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
-        TODO("Not yet implemented")
     }
 
 
