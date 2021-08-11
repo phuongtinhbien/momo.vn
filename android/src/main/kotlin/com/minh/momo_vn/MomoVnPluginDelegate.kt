@@ -2,6 +2,7 @@ package com.minh.momo_vn
 
 import android.app.Activity
 import android.content.Intent
+import android.util.Log
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 import io.flutter.plugin.common.MethodChannel.Result
@@ -11,8 +12,7 @@ import vn.momo.momo_partner.AppMoMoLib
 
 
 @Suppress("DEPRECATION")
-class MomoVnPluginDelegate(private var activity: Activity) : ActivityResultListener,
-    ActivityAware {
+class MomoVnPluginDelegate(private var activity: Activity) : ActivityResultListener{
 
     private var pendingResult: Result? = null
     private var pendingReply: Map<String, Any>? = null
@@ -41,8 +41,12 @@ class MomoVnPluginDelegate(private var activity: Activity) : ActivityResultListe
                 _handleResult(data)
             }
         } else {
+
+            Log.d("OAR-resultCode", resultCode.toString())
+            Log.d("OAR-requestCode", requestCode.toString())
+            Log.d("OAR-data", data.toString())
             val data: MutableMap<String, Any> = java.util.HashMap()
-            data["error"] = "User cancled"
+            data["error"] = "User canceled"
             sendReply(data)
         }
 
@@ -90,22 +94,6 @@ class MomoVnPluginDelegate(private var activity: Activity) : ActivityResultListe
         }
     }
 
-    override fun onDetachedFromActivityForConfigChanges() {
-    }
-
-    override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
-    }
-
-
-    override fun onAttachedToActivity(activityBinding: ActivityPluginBinding) {
-        this.activityBinding = activityBinding
-        activityBinding.addActivityResultListener(this)
-    }
-
-    override fun onDetachedFromActivity() {
-        activityBinding?.removeActivityResultListener(this)
-        activityBinding = null
-    }
 
 
 }
