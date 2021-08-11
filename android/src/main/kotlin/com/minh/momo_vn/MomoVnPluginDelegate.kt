@@ -36,16 +36,17 @@ class MomoVnPluginDelegate(private var activity: Activity) : ActivityResultListe
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?): Boolean {
+        Log.i("OAR-resultCode", resultCode.toString())
+        Log.i("OAR-requestCode", requestCode.toString())
+        Log.i("OAR-data", data.toString())
+        Log.i("OAR-activity", activity.toString())
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == AppMoMoLib.getInstance().REQUEST_CODE_MOMO) {
                 _handleResult(data)
             }
         } else {
 
-            Log.i("OAR-resultCode", resultCode.toString())
-            Log.i("OAR-requestCode", requestCode.toString())
-            Log.i("OAR-data", data.toString())
-            Log.i("OAR-activity", activity.toString())
+
             val data: MutableMap<String, Any> = java.util.HashMap()
             data["error"] = "User canceled"
             sendReply(data)
