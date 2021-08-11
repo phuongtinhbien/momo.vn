@@ -11,7 +11,7 @@ import vn.momo.momo_partner.AppMoMoLib
 
 
 @Suppress("DEPRECATION")
-class MomoVnPluginDelegate(private var activity: Activity) : ActivityResultListener,
+class MomoVnPluginDelegateOld(private var registrar: PluginRegistry.Registrar? = null) : ActivityResultListener,
     ActivityAware {
 
     private var pendingResult: Result? = null
@@ -32,7 +32,7 @@ class MomoVnPluginDelegate(private var activity: Activity) : ActivityResultListe
             AppMoMoLib.getInstance().setEnvironment(AppMoMoLib.ENVIRONMENT.DEVELOPMENT)
         }
 
-        AppMoMoLib.getInstance().requestMoMoCallBack(activity, paymentInfo)
+        AppMoMoLib.getInstance().requestMoMoCallBack(registrar?.activity(), paymentInfo)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?): Boolean {
