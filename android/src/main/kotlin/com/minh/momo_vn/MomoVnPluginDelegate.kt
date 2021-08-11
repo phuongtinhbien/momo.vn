@@ -42,10 +42,10 @@ class MomoVnPluginDelegate(private var activity: Activity) : ActivityResultListe
             }
         } else {
 
-            Log.d("OAR-resultCode", resultCode.toString())
-            Log.d("OAR-requestCode", requestCode.toString())
-            Log.d("OAR-data", data.toString())
-            Log.d("OAR-activity", activity.toString())
+            Log.i("OAR-resultCode", resultCode.toString())
+            Log.i("OAR-requestCode", requestCode.toString())
+            Log.i("OAR-data", data.toString())
+            Log.i("OAR-activity", activity.toString())
             val data: MutableMap<String, Any> = java.util.HashMap()
             data["error"] = "User canceled"
             sendReply(data)
