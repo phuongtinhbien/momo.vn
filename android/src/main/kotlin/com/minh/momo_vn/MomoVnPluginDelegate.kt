@@ -58,7 +58,7 @@ class MomoVnPluginDelegate(private var registrar: PluginRegistry.Registrar? = nu
             val token = data.getStringExtra("data")
             val phonenumber = data.getStringExtra("phonenumber")
             val message = data.getStringExtra("message")
-            val extra = data.getStringExtra("extra")
+            var extra = data.getStringExtra("extra")
             if (extra == null) {
                 extra = "";
             }
