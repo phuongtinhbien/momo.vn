@@ -13,6 +13,7 @@ import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.PluginRegistry
 import io.flutter.plugin.common.PluginRegistry.NewIntentListener
+import vn.momo.momo_partner.AppMoMoLib
 
 
 class MomoVnPlugin : FlutterPlugin, ActivityAware, MethodCallHandler,
