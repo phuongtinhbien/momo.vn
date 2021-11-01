@@ -16,7 +16,7 @@ import io.flutter.plugin.common.PluginRegistry.NewIntentListener
 
 
 class MomoVnPlugin : FlutterPlugin, ActivityAware, MethodCallHandler,
-    NewIntentListener, PluginRegistry.ActivityResultListener {
+        NewIntentListener, PluginRegistry.ActivityResultListener {
     private lateinit var momoVnPluginDelegate: MomoVnPluginDelegate
 
     private var activity: Activity? = null
@@ -38,9 +38,7 @@ class MomoVnPlugin : FlutterPlugin, ActivityAware, MethodCallHandler,
 
 
     override fun onNewIntent(intent: Intent): Boolean {
-        Log.d("onNewIntent", intent.toString())
-        // Handled
-        return true
+        return momoVnPluginDelegate.onActivityResult(AppMoMoLib.getInstance().REQUEST_CODE_MOMO, Activity.RESULT_OK, intent)
     }
 
     override fun onMethodCall(call: MethodCall, result: MethodChannel.Result) {
